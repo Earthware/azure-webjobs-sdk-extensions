@@ -56,6 +56,16 @@ namespace Microsoft.Azure.WebJobs.Extensions.Postmark
         /// </summary>
         public string SenderSignature { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether "Track Opens" field is true or false. May include binding parameters.
+        /// </summary>
+        public bool TrackOpens { get; set; }
+
+        /// <summary>
+        /// Gets or sets the message "Tag" field. May include binding parameters.
+        /// </summary>
+        public string Tag { get; set; }
+
         internal IPostmarkClientFactory ClientFactory { get; set; }
 
         /// <inheritdoc />
@@ -70,6 +80,8 @@ namespace Microsoft.Azure.WebJobs.Extensions.Postmark
             context.ApplyConfig(metadata, "postmark");
             this.ToAddress = metadata.To;
             this.SenderSignature = metadata.SenderSignature;
+            this.TrackOpens = metadata.TrackOpens;
+            this.Tag = metadata.Tag;
 
             if (string.IsNullOrEmpty(this.ServerToken))
             {
@@ -122,6 +134,12 @@ namespace Microsoft.Azure.WebJobs.Extensions.Postmark
 
             [JsonProperty("from")]
             public string SenderSignature { get; set; }
+
+            [JsonProperty("tracksopens")]
+            public bool TrackOpens { get; set; }
+
+            [JsonProperty("tag")]
+            public string Tag { get; set; }
         }
     }
 }

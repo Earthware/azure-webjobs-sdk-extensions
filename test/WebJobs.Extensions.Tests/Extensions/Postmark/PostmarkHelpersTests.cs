@@ -22,7 +22,9 @@ namespace PostmarkTests
             {
                 ServerToken = "12345",
                 SenderSignature = "Test2 <test2@test.com>",
-                ToAddress = "Test <test@test.com>"
+                ToAddress = "Test <test@test.com>",
+                Tag = "test tag",
+                TrackOpens = true
             };
 
             PostmarkMessage message = new PostmarkMessage();
@@ -36,6 +38,8 @@ namespace PostmarkTests
             Assert.Equal("Test <test@test.com>", message.To);
             Assert.Equal("TestSubject", message.Subject);
             Assert.Equal("<b>TestText</b>", message.HtmlBody);
+            Assert.Equal("test tag", message.Tag);
+            Assert.False(message.TrackOpens);
         }
 
         [Fact]
@@ -56,7 +60,6 @@ namespace PostmarkTests
             Assert.Equal("test3@contoso.com", result.From);
             Assert.Equal("Test Subject", result.Subject);
             Assert.Equal("Test Text", result.TextBody);
-            Assert.Equal("<b>TestText</b>", result.HtmlBody);
         }
 
         [Fact]

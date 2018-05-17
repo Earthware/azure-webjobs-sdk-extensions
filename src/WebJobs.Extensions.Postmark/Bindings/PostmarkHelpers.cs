@@ -63,10 +63,18 @@ namespace Microsoft.Azure.WebJobs.Extensions.Bindings
             {
                 mail.Tag = attribute.Tag;
             }
+            else if (config.Tag != null)
+            {
+                mail.Tag = config.Tag;
+            }
 
             if (mail.TrackOpens == null)
             {
                 mail.TrackOpens = attribute.TrackOpens;
+            }
+            else
+            {
+                mail.TrackOpens = config.TrackOpens;
             }
         }
 
