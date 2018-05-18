@@ -62,7 +62,7 @@ namespace Microsoft.Azure.WebJobs
         /// Gets or sets a value indicating whether "Track Opens" field is true or false. May include binding parameters.
         /// </summary>
         [AutoResolve]
-        public bool TrackOpens { get; set; }
+        public string TrackOpens { get; set; }
 
         /// <summary>
         /// Gets or sets the message "Tag" field. May include binding parameters.

@@ -70,7 +70,9 @@ namespace Microsoft.Azure.WebJobs.Extensions.Bindings
 
             if (mail.TrackOpens == null)
             {
-                mail.TrackOpens = attribute.TrackOpens;
+                var tempBool = false;
+                bool.TryParse(attribute.TrackOpens, out tempBool);
+                mail.TrackOpens = tempBool;
             }
             else
             {
