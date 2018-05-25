@@ -92,7 +92,7 @@ namespace PostmarkTests
             var ex = await Assert.ThrowsAsync<FunctionIndexingException>(
                 () => RunTestAsync(functionName, factoryMock.Object, configApiKey: null, includeDefaultServerToken: false));
 
-            Assert.Equal("The Postmark ServerToken must be set either via an 'AzureWebJobsPostmarkServerToken' app setting, via an 'AzureWebJobsPostmarkServerToken' environment variable, or directly in code via PostmarkConfiguration.ServerToken or PostmarkAttribute.ServerToken.", ex.InnerException.Message);
+            Assert.Equal("The Postmark Server Token must be set either via an 'AzureWebJobsPostmarkServerToken' app setting, via an 'AzureWebJobsPostmarkServerToken' environment variable, or directly in code via PostmarkConfiguration.ServerToken or PostmarkAttribute.ServerToken.", ex.InnerException.Message);
         }
 
         private void InitializeMocks(out Mock<IPostmarkClientFactory> factoryMock, out Mock<IPostmarkClient> clientMock)
@@ -160,7 +160,7 @@ namespace PostmarkTests
             // This function verifies Attribute and Config behavior for ApiKey
             public static void Outputs_AttributeAndConfig(
                 [Postmark(ServerToken = "MyKey1")] out PostmarkMessage message,
-                [SendGrid] out JObject jObject,
+                [Postmark] out JObject jObject,
                 [Postmark(ServerToken = "MyKey1")] IAsyncCollector<PostmarkMessage> asyncCollectorMessage,
                 [Postmark(ServerToken = "MyKey2")] ICollector<JObject> collectorJObject,
                 TraceWriter trace)
